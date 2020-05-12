@@ -1,7 +1,7 @@
 import 'package:f_groceries/Cart_Screen.dart';
 import 'package:f_groceries/item_details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_range_slider/flutter_range_slider.dart';
+import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
 
 class Item_Screen extends StatefulWidget {
   final String toolbarname;
@@ -1453,7 +1453,7 @@ class RangeSliderData {
   // Builds a RangeSlider and customizes the theme
   // based on parameters
   //
-  Widget build(BuildContext context, RangeSliderCallback callback) {
+  Widget build(BuildContext context, rs.RangeSliderCallback callback) {
     return new Container(
       width: double.infinity,
       child: new Row(
@@ -1481,7 +1481,7 @@ class RangeSliderData {
                     ? ShowValueIndicator.always
                     : ShowValueIndicator.onlyForDiscrete,
               ),
-              child: new RangeSlider(
+              child:  rs.RangeSlider(
                 min: min,
                 max: max,
                 lowerValue: lowerValue,
