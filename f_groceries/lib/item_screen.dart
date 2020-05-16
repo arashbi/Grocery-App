@@ -3,48 +3,48 @@ import 'package:f_groceries/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
 
-class Item_Screen extends StatefulWidget {
-  final String toolbarname;
+class ItemScreen extends StatefulWidget {
+  final String toolbarName;
 
-  Item_Screen({Key key, this.toolbarname}) : super(key: key);
+  ItemScreen({Key key, this.toolbarName}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => item(toolbarname);
+  State<StatefulWidget> createState() => item(toolbarName);
 }
 
 class Item {
-  final String itemname;
-  final String imagename;
-  final String itmprice;
+  final String name;
+  final String image;
+  final String price;
 
-  Item({this.itemname, this.imagename, this.itmprice});
+  Item({this.name, this.image, this.price});
 }
 
-class item extends State<Item_Screen> {
+class item extends State<ItemScreen> {
   List list = ['12', '11'];
   bool checkboxValueA = true;
   bool checkboxValueB = false;
   bool checkboxValueC = false;
   VoidCallback _showBottomSheetCallback;
   List<Item> itemList = <Item>[
-    Item(imagename: 'images/apple.jpg', itemname: 'Apple', itmprice: '\$10'),
-    Item(imagename: 'images/tomato.jpg', itemname: 'Tomato', itmprice: '\$15'),
-    Item(imagename: 'images/lemons.jpg', itemname: 'Lemon', itmprice: '\$25'),
+    Item(image: 'images/apple.jpg', name: 'Apple', price: '\$10'),
+    Item(image: 'images/tomato.jpg', name: 'Tomato', price: '\$15'),
+    Item(image: 'images/lemons.jpg', name: 'Lemon', price: '\$25'),
     Item(
-        imagename: 'images/kiwi.jpg', itemname: 'Kiwi Fruit', itmprice: '\$10'),
-    Item(imagename: 'images/guava.jpg', itemname: 'Guava', itmprice: '\$15'),
-    Item(imagename: 'images/grapes.jpg', itemname: 'Grapes', itmprice: '\$25'),
+        image: 'images/kiwi.jpg', name: 'Kiwi Fruit', price: '\$10'),
+    Item(image: 'images/guava.jpg', name: 'Guava', price: '\$15'),
+    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
     Item(
-        imagename: 'images/pineapple.jpg',
-        itemname: 'Pineapple',
-        itmprice: '\$18'),
-    Item(imagename: 'images/lemons.jpg', itemname: 'Lemon', itmprice: '\$25'),
-    Item(imagename: 'images/tomato.jpg', itemname: 'Tomato', itmprice: '\$15'),
+        image: 'images/pineapple.jpg',
+        name: 'Pineapple',
+        price: '\$18'),
+    Item(image: 'images/lemons.jpg', name: 'Lemon', price: '\$25'),
+    Item(image: 'images/tomato.jpg', name: 'Tomato', price: '\$15'),
     Item(
-        imagename: 'images/kiwi.jpg', itemname: 'Kiwi Fruit', itmprice: '\$10'),
-    Item(imagename: 'images/apple.jpg', itemname: 'Apple', itmprice: '\$10'),
-    Item(imagename: 'images/grapes.jpg', itemname: 'Grapes', itmprice: '\$25'),
-    Item(imagename: 'images/grapes.jpg', itemname: 'Grapes', itmprice: '\$25'),
+        image: 'images/kiwi.jpg', name: 'Kiwi Fruit', price: '\$10'),
+    Item(image: 'images/apple.jpg', name: 'Apple', price: '\$10'),
+    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
+    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
   ];
  // String toolbarname = 'Fruiys & Vegetables';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -1276,7 +1276,7 @@ class TravelDestinationItem extends StatelessWidget {
                     children: <Widget>[
                       Positioned.fill(
                         child: Image.asset(
-                          destination.imagename,
+                          destination.image,
                           // package: destination.assetPackage,
                           fit: BoxFit.scaleDown,
                         ),
@@ -1307,7 +1307,7 @@ class TravelDestinationItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
-                              destination.itemname,
+                              destination.name,
                               style: descriptionStyle.copyWith(
                                   color: Colors.black87),
                             ),
@@ -1315,7 +1315,7 @@ class TravelDestinationItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
-                              destination.itmprice,
+                              destination.price,
                               style: descriptionStyle.copyWith(
                                   color: Colors.black54),
                             ),

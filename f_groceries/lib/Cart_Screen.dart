@@ -154,7 +154,7 @@ class Cart extends State<Cart_screen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Item_Screen()));
+                                  builder: (context) => ItemScreen()));
                         }),
                   ],
                 ),

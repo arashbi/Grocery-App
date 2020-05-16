@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:f_groceries/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 
-void main() => runApp(new MyApp());
+void main() {
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -67,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
 
     return new Container(
       alignment: Alignment.center,
@@ -84,4 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+}
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
 }

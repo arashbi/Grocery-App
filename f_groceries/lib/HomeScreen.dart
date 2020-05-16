@@ -2,12 +2,14 @@ import 'package:f_groceries/Cart_Screen.dart';
 import 'package:f_groceries/help_screen.dart';
 import 'package:f_groceries/item_screen.dart';
 import 'package:f_groceries/logind_signup.dart';
+import 'package:f_groceries/model/models.dart';
 import 'package:f_groceries/orderhistory_screen.dart';
 import 'package:f_groceries/setting_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:loader_search_bar/loader_search_bar.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 import 'Account_screen.dart';
+import 'model/data_model.dart';
 
 const String _kGalleryAssetsPackage = 'flutter_gallery_assets';
 
@@ -35,40 +37,42 @@ class Photo {
 class home extends State<Home_screen> {
   List list = ['12', '11'];
 
-  List<Photo> photos = <Photo>[
-    Photo(
-      assetName: 'images/veg.jpg',
-      title: 'Fruits & Vegetables',
-    ),
-    Photo(
-      assetName: 'images/frozen.jpg',
-      title: 'Frozen Veg',
-    ),
-    Photo(
-      assetName: 'images/bev.jpg',
-      title: 'Beverages',
-    ),
-    Photo(
-      assetName: 'images/brand_f.jpg',
-      title: 'Brannded Food',
-    ),
-    Photo(
-      assetName: 'images/be.jpg',
-      title: 'Beauty & Personal Care',
-    ),
-    Photo(
-      assetName: 'images/home.jpg',
-      title: 'Home Care & Fashion',
-    ),
-    Photo(
-      assetName: 'images/nonveg.jpg',
-      title: 'Non Veg',
-    ),
-    Photo(
-      assetName: 'images/eggs.jpg',
-      title: 'Dairy, Bakery & Eggs',
-    ),
-  ];
+//  List<CategoryDto> categories = <CategoryDto>[
+//    CategoryDto((builder) {
+//      builder.id = 1;
+//      builder.image = 'images/veg.jpg';
+//      builder.name = 'Fruits & Vegetables';
+//    }),
+//    CategoryDto((builder) {
+//      builder.id = 2;
+//      builder.image = 'images/frozen.jpg';
+//      builder.name = 'Frozen Veg';
+//  }),
+//    Photo(
+//      assetName: 'images/bev.jpg',
+//      title: 'Beverages',
+//    ),
+//    Photo(
+//      assetName: 'images/brand_f.jpg',
+//      title: 'Brannded Food',
+//    ),
+//    Photo(
+//      assetName: 'images/be.jpg',
+//      title: 'Beauty & Personal Care',
+//    ),
+//    Photo(
+//      assetName: 'images/home.jpg',
+//      title: 'Home Care & Fashion',
+//    ),
+//    Photo(
+//      assetName: 'images/nonveg.jpg',
+//      title: 'Non Veg',
+//    ),
+//    Photo(
+//      assetName: 'images/eggs.jpg',
+//      title: 'Dairy, Bakery & Eggs',
+//    ),
+//  ];
 
   final List<String> items = ['Balbhadra', 'Maulik', 'Roshi'];
   static const double height = 366.0;
@@ -101,9 +105,9 @@ class home extends State<Home_screen> {
 
             },
           ),
-          new Padding(
+           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: new Container(
+            child: Container(
               height: 150.0,
               width: 30.0,
               child: new GestureDetector(
@@ -188,7 +192,7 @@ class home extends State<Home_screen> {
                       leading: Icon(Icons.favorite),
                       title: new Text(name),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: name,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: name,)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -251,7 +255,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Best value',
@@ -264,7 +268,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Top sellers',
@@ -280,7 +284,7 @@ class home extends State<Home_screen> {
                     children: <Widget>[
                       new GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                         },
                         child: new Text(
                           'All',
@@ -490,7 +494,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Categories',
@@ -503,7 +507,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Popular',
@@ -518,7 +522,7 @@ class home extends State<Home_screen> {
                       children: <Widget>[
                         new GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
                           },
                           child: new Text(
                             'Whats New',
@@ -532,91 +536,11 @@ class home extends State<Home_screen> {
                     )
                   ]),
             ),
-            new Container(
-              alignment: Alignment.topCenter,
-              height: 700.0,
-
-              child: new GridView.builder(
-                  itemCount: photos.length,
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(10.0),
-                  gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: (BuildContext context, int index) {
-                    return new GestureDetector(
-                      onTap: (){
-
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
-                      },
-
-                        child: new Container(
-                            margin: EdgeInsets.all(5.0),
-                            child: new Card(
-                              shape: shapeBorder,
-                              elevation: 3.0,
-                              child: new Container(
-                                //  mainAxisSize: MainAxisSize.max,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      height: 152.0,
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Positioned.fill(
-                                              child: Image.asset(
-                                            photos[index].assetName,
-                                            fit: BoxFit.cover,
-                                          )),
-                                          Container(
-                                            color: Colors.black38,
-                                          ),
-                                          Container(
-                                            //margin: EdgeInsets.only(left: 10.0),
-                                            padding: EdgeInsets.only(
-                                                left: 3.0, bottom: 3.0),
-                                            alignment: Alignment.bottomLeft,
-                                            child: new GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> Item_Screen(toolbarname: 'Fruits & Vegetables',)));
-                                              },
-                                              child: new Text(
-                                                photos[index].title,
-                                                style: TextStyle(
-                                                    fontSize: 18.0,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                          ),
-
-                                          /*Positioned(
-                                    child: FittedBox(
-
-                                     fit: BoxFit.fill,
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(photos[index].title,
-                                        style: TextStyle(color: Colors.black87,fontSize: 15.0),
-                                      ),
-
-                                  )
-                                  )*/
-                                        ],
-                                      ),
-                                    ),
-
-                                    // new Text(photos[index].title.toString()),
-                                  ],
-                                ),
-                              ),
-                            )
-                        )
-
-                    );
-                  }),
-            )
+             ChangeNotifierProvider(
+                create: (context) => CategoryModel()..fetch(),
+                child: Consumer<CategoryModel>(
+                  builder: (context, categoryModel, child) => CategoriesWidget(categoryModel: categoryModel, shapeBorder: shapeBorder))
+                )
           ]),
         ),
       ),
@@ -644,4 +568,145 @@ class home extends State<Home_screen> {
       );
 
 
+}
+
+class CategoriesWidget extends StatelessWidget {
+  const CategoriesWidget({
+    Key key,
+    @required this.categoryModel,
+    @required this.shapeBorder,
+  }) : super(key: key);
+
+  final CategoryModel categoryModel;
+  final ShapeBorder shapeBorder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+              alignment: Alignment.topCenter,
+              height: 700.0,
+
+              child: new GridView.builder(
+      itemCount: categoryModel.categories.length,
+      primary: false,
+      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(10.0),
+      gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return CategoryWidget(shapeBorder: shapeBorder, category: categoryModel.categories[index]);
+      }),
+            );
+  }
+}
+
+class CategoryWidget extends StatelessWidget {
+  const CategoryWidget({
+    Key key,
+    @required this.shapeBorder,
+    @required this.category,
+  }) : super(key: key);
+
+  final ShapeBorder shapeBorder;
+  final CategoryDto category;
+
+  @override
+  Widget build(BuildContext context) {
+    return new GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+      },
+
+        child: new Container(
+            margin: EdgeInsets.all(5.0),
+            child: new Card(
+              shape: shapeBorder,
+              elevation: 3.0,
+              child: new Container(
+                //  mainAxisSize: MainAxisSize.max,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 152.0,
+                      child: CategoryCard(category: category),
+                    ),
+
+                     new Text(category.name, style: TextStyle(
+                         fontSize: 18.0,
+                         color: Colors.black87,
+                         fontWeight:
+                         FontWeight.bold),
+                     )
+                  ],
+                ),
+              ),
+            )
+        )
+
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
+    Key key,
+    @required this.category,
+  }) : super(key: key);
+
+  final CategoryDto category;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Positioned.fill(
+            child: WidgetImage(category: category)),
+        Container(
+          color: Colors.black38,
+        ),
+        Container(
+          //margin: EdgeInsets.only(left: 10.0),
+          padding: EdgeInsets.only(
+              left: 3.0, bottom: 3.0),
+          alignment: Alignment.bottomLeft,
+          child: new GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+            },
+
+          ),
+        ),
+
+        /*Positioned(
+                    child: FittedBox(
+
+                     fit: BoxFit.fill,
+    alignment: Alignment.centerLeft,
+    child: Text(photos[index].title,
+      style: TextStyle(color: Colors.black87,fontSize: 15.0),
+    ),
+
+                  )
+                  )*/
+      ],
+    );
+  }
+}
+
+class WidgetImage extends StatelessWidget {
+  const WidgetImage({
+    Key key,
+    @required this.category,
+  }) : super(key: key);
+
+  final CategoryDto category;
+
+  @override
+  Widget build(BuildContext context) {
+    return category.image != null ? Image.network(
+          category.image.src,
+          fit: BoxFit.fitHeight,
+        ) : Text(category.name.substring(0,1), textScaleFactor: 10.0,);
+  }
 }
