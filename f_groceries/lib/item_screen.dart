@@ -27,19 +27,6 @@ class ItemsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconData _backIcon() {
-      switch (Theme.of(context).platform) {
-        case TargetPlatform.android:
-        case TargetPlatform.fuchsia:
-          return Icons.arrow_back;
-        case TargetPlatform.linux:
-          return Icons.arrow_back;
-        case TargetPlatform.iOS:
-          return Icons.arrow_back_ios;
-      }
-      assert(false);
-      return null;
-    }
 
     var size = MediaQuery.of(context).size;
 
@@ -48,89 +35,7 @@ class ItemsScreen extends StatelessWidget {
     final double itemWidth = size.width / 2;
     return new Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(_backIcon()),
-          alignment: Alignment.centerLeft,
-          tooltip: 'Back',
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(toolbarname),
-        backgroundColor: Colors.white,
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Search',
-            icon: const Icon(Icons.search),
-            onPressed: () async {
-              final int selected = await showSearch<int>(
-                context: context,
-                //delegate: _delegate,
-              );
-
-            },
-          ),
-          IconButton(
-            tooltip: 'Sort',
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {
-
-            }
-
-          ),
-          new Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: new Container(
-              height: 150.0,
-              width: 30.0,
-              child: new GestureDetector(
-                onTap: () {
-                  /*Navigator.of(context).push(
-                  new MaterialPageRoute(
-                      builder:(BuildContext context) =>
-                      new CartItemsScreen()
-                  )
-              );*/
-                },
-                child: Stack(
-                  children: <Widget>[
-                    new IconButton(
-                        icon: new Icon(
-                          Icons.shopping_cart,
-                          color: Colors.black,
-                        ),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart_screen()));
-                        }),
-                    list.length == 0
-                        ? new Container()
-                        : new Positioned(
-                        child: new Stack(
-                          children: <Widget>[
-                            new Icon(Icons.brightness_1,
-                                size: 20.0, color: Colors.orange.shade500),
-                            new Positioned(
-                                top: 4.0,
-                                right: 5.5,
-                                child: new Center(
-                                  child: new Text(
-                                    list.length.toString(),
-                                    style: new TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11.0,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                )),
-                          ],
-                        )),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+      appBar: _appbar(context),
       body: Column(
         children: <Widget>[
           Container(
@@ -142,7 +47,7 @@ class ItemsScreen extends StatelessWidget {
               builder: (context, productsModel, child)=> Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
-                  childAspectRatio: (itemWidth / itemHeight),
+                  childAspectRatio: 0.7,
                   controller: new ScrollController(keepScrollOffset: false),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -204,6 +109,105 @@ class ItemsScreen extends StatelessWidget {
                 );*/
     );
   }
+  _appbar(BuildContext context){
+    IconData _backIcon() {
+      switch (Theme.of(context).platform) {
+        case TargetPlatform.android:
+        case TargetPlatform.fuchsia:
+          return Icons.arrow_back;
+        case TargetPlatform.linux:
+          return Icons.arrow_back;
+        case TargetPlatform.iOS:
+          return Icons.arrow_back_ios;
+      }
+      assert(false);
+      return null;
+    }
+
+    return AppBar(
+      leading: IconButton(
+        icon: Icon(_backIcon()),
+        alignment: Alignment.centerLeft,
+        tooltip: 'Back',
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      title: Text(toolbarname),
+      backgroundColor: Colors.white,
+      actions: <Widget>[
+        IconButton(
+          tooltip: 'Search',
+          icon: const Icon(Icons.search),
+          onPressed: () async {
+            final int selected = await showSearch<int>(
+              context: context,
+              //delegate: _delegate,
+            );
+
+          },
+        ),
+        IconButton(
+            tooltip: 'Sort',
+            icon: const Icon(Icons.filter_list),
+            onPressed: () {
+
+            }
+
+        ),
+        new Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: new Container(
+            height: 150.0,
+            width: 30.0,
+            child: new GestureDetector(
+              onTap: () {
+                /*Navigator.of(context).push(
+                  new MaterialPageRoute(
+                      builder:(BuildContext context) =>
+                      new CartItemsScreen()
+                  )
+              );*/
+              },
+              child: Stack(
+                children: <Widget>[
+                  new IconButton(
+                      icon: new Icon(
+                        Icons.shopping_cart,
+                        color: Colors.black,
+                      ),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Cart_screen()));
+                      }),
+                  list.length == 0
+                      ? new Container()
+                      : new Positioned(
+                      child: new Stack(
+                        children: <Widget>[
+                          new Icon(Icons.brightness_1,
+                              size: 20.0, color: Colors.orange.shade500),
+                          new Positioned(
+                              top: 4.0,
+                              right: 5.5,
+                              child: new Center(
+                                child: new Text(
+                                  list.length.toString(),
+                                  style: new TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11.0,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )),
+                        ],
+                      )),
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
 }
 
 class ProductWidget extends StatelessWidget {
@@ -237,60 +241,50 @@ class ProductWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 // photo and title
-                SizedBox(
-                  height: 150.0,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Image.network(
-                          product.images[0].src,
-                          // package: destination.assetPackage,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.topLeft,
-                       // padding: EdgeInsets.all(5.0),
-                        child: IconButton(icon: const Icon(Icons.favorite_border), onPressed: (){
+                Stack(
+                  children: <Widget>[
+                    Image.network(
+                      product.images[0].src,
+                      // package: destination.assetPackage,
+                      fit: BoxFit.scaleDown,
+                    ),
+            Container(
+              alignment: Alignment.topLeft,
+              // padding: EdgeInsets.all(5.0),
+              child: IconButton(icon: const Icon(Icons.favorite_border), onPressed: (){
 
-                        }),
-                      ),
-                    ],
-                  ),
-
+              })),
+                  ],
                 ),
                 // description and share/explore buttons
-                Divider(),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-                    child: DefaultTextStyle(
-                      style: descriptionStyle,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          // three line description
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              product.name,
-                              style: descriptionStyle.copyWith(
-                                  color: Colors.black87),
-                            ),
+
+                  child: DefaultTextStyle(
+                    style: descriptionStyle,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        // three line description
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            product.name,
+                            style: descriptionStyle.copyWith(
+                                color: Colors.black87),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              product.price,
-                              style: descriptionStyle.copyWith(
-                                  color: Colors.black54),
-                            ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            product.price,
+                            style: descriptionStyle.copyWith(
+                                color: Colors.black54),
                           ),
-                          // Text(destination.description[1]),
-                          // Text(destination.description[2]),
-                        ],
-                      ),
+                        ),
+                        // Text(destination.description[1]),
+                        // Text(destination.description[2]),
+                      ],
                     ),
                   ),
                 ),
