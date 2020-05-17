@@ -2,63 +2,37 @@ import 'package:f_groceries/Cart_Screen.dart';
 import 'package:f_groceries/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
+import 'package:provider/provider.dart';
 
-class ItemScreen extends StatefulWidget {
+import 'model/data_model.dart';
+import 'model/models.dart';
+
+class ItemsScreen extends StatelessWidget {
   final String toolbarName;
+  final String categoryId;
+  ItemsScreen({
+    Key key,
+    this.categoryId,
+    this.toolbarName
+  }) : super(key: key);
 
-  ItemScreen({Key key, this.toolbarName}) : super(key: key);
+ final List list = ['12', '11'];
+//  bool checkboxValueA = true;
+//  bool checkboxValueB = false;
+//  bool checkboxValueC = false;
+//  VoidCallback _showBottomSheetCallback;
 
-  @override
-  State<StatefulWidget> createState() => item(toolbarName);
-}
-
-class Item {
-  final String name;
-  final String image;
-  final String price;
-
-  Item({this.name, this.image, this.price});
-}
-
-class item extends State<ItemScreen> {
-  List list = ['12', '11'];
-  bool checkboxValueA = true;
-  bool checkboxValueB = false;
-  bool checkboxValueC = false;
-  VoidCallback _showBottomSheetCallback;
-  List<Item> itemList = <Item>[
-    Item(image: 'images/apple.jpg', name: 'Apple', price: '\$10'),
-    Item(image: 'images/tomato.jpg', name: 'Tomato', price: '\$15'),
-    Item(image: 'images/lemons.jpg', name: 'Lemon', price: '\$25'),
-    Item(
-        image: 'images/kiwi.jpg', name: 'Kiwi Fruit', price: '\$10'),
-    Item(image: 'images/guava.jpg', name: 'Guava', price: '\$15'),
-    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
-    Item(
-        image: 'images/pineapple.jpg',
-        name: 'Pineapple',
-        price: '\$18'),
-    Item(image: 'images/lemons.jpg', name: 'Lemon', price: '\$25'),
-    Item(image: 'images/tomato.jpg', name: 'Tomato', price: '\$15'),
-    Item(
-        image: 'images/kiwi.jpg', name: 'Kiwi Fruit', price: '\$10'),
-    Item(image: 'images/apple.jpg', name: 'Apple', price: '\$10'),
-    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
-    Item(image: 'images/grapes.jpg', name: 'Grapes', price: '\$25'),
-  ];
- // String toolbarname = 'Fruiys & Vegetables';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  String toolbarname;
-
-  item(this.toolbarname);
+  final String toolbarname = "name";
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     IconData _backIcon() {
       switch (Theme.of(context).platform) {
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
+          return Icons.arrow_back;
+        case TargetPlatform.linux:
           return Icons.arrow_back;
         case TargetPlatform.iOS:
           return Icons.arrow_back_ios;
@@ -72,8 +46,6 @@ class item extends State<ItemScreen> {
     /*24 is for notification bar on Android*/
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
-
-    final Orientation orientation = MediaQuery.of(context).orientation;
     return new Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -104,7 +76,6 @@ class item extends State<ItemScreen> {
             icon: const Icon(Icons.filter_list),
             onPressed: () {
 
-              _showBottomSheet();
             }
 
           ),
@@ -164,23 +135,28 @@ class item extends State<ItemScreen> {
         children: <Widget>[
           Container(
             // height: 500.0,
-            child: Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: (itemWidth / itemHeight),
-                controller: new ScrollController(keepScrollOffset: false),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.all(4.0),
-                children: itemList.map((Item photo) {
-                  return TravelDestinationItem(
-                    destination: photo,
+            child: ChangeNotifierProvider<ProductsModel>(
+              create: (context) => ProductsModel(categoryId: this.categoryId)..fetch(),
 
-                  );
-                }).toList(),
+            child: Consumer<ProductsModel>(
+              builder: (context, productsModel, child)=> Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  childAspectRatio: (itemWidth / itemHeight),
+                  controller: new ScrollController(keepScrollOffset: false),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  padding: const EdgeInsets.all(4.0),
+                  children: productsModel.products.map((ProductDto aProduct) {
+                    return ProductWidget(
+                      product: aProduct,
+
+                    );
+                  }).toList(),
+                ),
               ),
             ),
-          )
+          ))
         ],
       ),
 
@@ -228,1029 +204,20 @@ class item extends State<ItemScreen> {
                 );*/
     );
   }
-
-
-  _verticalDivider() =>
-      Container(
-        padding: EdgeInsets.all(2.0),
-      );
-
-  _verticalD() =>
-      Container(
-        margin: EdgeInsets.only(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
-      );
-
-
-  bool a = true;
-  String mText = "Press to hide";
-  double _lowerValue = 1.0;
-  double _upperValue = 100.0;
-
-  void _visibilitymethod() {
-    setState(() {
-      if (a) {
-        a = false;
-        mText = "Press to show";
-      } else {
-        a = true;
-        mText = "Press to hide";
-      }
-    });
-  }
-
-  List<RangeSliderData> rangeSliders;
-  List<Widget> _buildRangeSliders() {
-    List<Widget> children = <Widget>[];
-    for (int index = 0; index < rangeSliders.length; index++) {
-      children
-          .add(rangeSliders[index].build(context, (double lower, double upper) {
-        // adapt the RangeSlider lowerValue and upperValue
-        setState(() {
-          rangeSliders[index].lowerValue = lower;
-          rangeSliders[index].upperValue = upper;
-        });
-      }));
-      // Add an extra padding at the bottom of each RangeSlider
-      children.add(new SizedBox(height: 8.0));
-    }
-
-    return children;
-  }
-  void _showBottomSheet() {
-    setState(() { // disable the button
-      _showBottomSheetCallback = null;
-    });
-    _scaffoldKey.currentState.showBottomSheet<Null>((BuildContext context) {
-      final ThemeData themeData = Theme.of(context);
-      return Container(
-        alignment: Alignment.topLeft,
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-            border: Border(top: BorderSide(color: themeData.disabledColor))
-        ),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: <Widget>[
-
-              Row(
-
-                crossAxisAlignment: CrossAxisAlignment.center,
-
-                children: <Widget>[
-
-                  IconButton(icon: const Icon(Icons.close), onPressed: (){
-                    Navigator.pop(context);
-                  }),
-                  Text('FILTER/SORTING',
-                    style: TextStyle(fontSize: 12.0, color: Colors.black26),),
-                  _verticalD(),
-                  OutlineButton(
-                      borderSide: BorderSide(color: Colors.amber.shade500),
-                      child: const Text('CLEAR'),
-                      textColor: Colors.amber.shade500,
-                      onPressed: () {},
-                      shape: new OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      )),
-
-                  _verticalD(),
-                  OutlineButton(
-                      borderSide: BorderSide(color: Colors.amber.shade500),
-                      child: const Text('APPLY'),
-                      textColor: Colors.amber.shade500,
-                      onPressed: () {},
-                      shape: new OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      )),
-
-                ],
-              ),
-
-              Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Sort', style: TextStyle(color: Colors.black,
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-                    ],
-                  )
-              ),
-              Container(
-                  height: 115.0,
-                  margin: EdgeInsets.only(left: 7.0,top: 5.0),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Container(
-                        child: Card(
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    alignment: Alignment.center,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'LOWEST',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'PRICE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'FIRST',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        child: Card(
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-
-
-                                children: <Widget>[
-                                  new Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'HEGHEST',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'PRICE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'FIRST',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        child: Card(
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-
-
-                                children: <Widget>[
-                                  new Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'POPULER',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'PRICE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'FIRST',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child: Card(
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-
-
-                                children: <Widget>[
-                                  new Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'NEWEST',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'PRICE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'FIRST',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),Container(
-                        child: Card(
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-
-
-                                children: <Widget>[
-                                  new Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'BEST',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'PRICE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'FIRST',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-
-
-                    ],
-                  )
-              ),
-              _verticalDivider(),
-              Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Filter', style: TextStyle(color: Colors.black,
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-                      _verticalDivider(),
-                      Text('PRICE', style: TextStyle(color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-                    ],
-                  )
-              ),
-
-      /*  Container(
-          padding: const EdgeInsets.only(top: 50.0, left: 10.0, right: 10.0),
-          child: new Column(
-              children: <Widget>[]
-                ..add(
-                  //
-                  // Simple example
-                  //
-                  new RangeSlider(
-                    min: 0.0,
-                    max: 100.0,
-                    lowerValue: _lowerValue,
-                    upperValue: _upperValue,
-                    divisions: 5,
-                    showValueIndicator: true,
-                    valueIndicatorMaxDecimals: 1,
-                    onChanged: (double newLowerValue, double newUpperValue) {
-                      setState(() {
-                        _lowerValue = newLowerValue;
-                        _upperValue = newUpperValue;
-                      });
-                    },
-                    onChangeStart:
-                        (double startLowerValue, double startUpperValue) {
-                      print(
-                          'Started with values: $startLowerValue and $startUpperValue');
-                    },
-                    onChangeEnd: (double newLowerValue, double newUpperValue) {
-                      print(
-                          'Ended with values: $newLowerValue and $newUpperValue');
-                    },
-                  ),
-                )
-              // Add some space
-                ..add(
-                  new SizedBox(height: 24.0),
-                )
-              //
-              // Add a series of RangeSliders, built as regular Widgets
-              // each one having some specific customizations
-              //
-                ..addAll(_buildRangeSliders())),
-        ),*/
-
-              _verticalDivider(),
-              Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-
-                      _verticalDivider(),
-                      Text('SELECT OFFER', style: TextStyle(color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-                    ],
-                  )
-              ),
-
-              Container(
-                  height: 80.0,
-                  margin: EdgeInsets.only(left: 7.0,top: 5.0),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Container(
-                        height:80.0,
-                        width: 120.0,
-                        child: Card(
-                          color: Colors.pink.shade100,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    color: Colors.pink.shade100,
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'Buy More,',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'Save More',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        height:80.0,
-                        width: 120.0,
-                        child: Card(
-                          color: Colors.indigo.shade500,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'Special,',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'Price',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height:80.0,
-                        width: 120.0,
-                        child: Card(
-                          color: Colors.teal.shade200,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-
-                                    alignment: Alignment.center,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'Item of,',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'The Day',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height:80.0,
-                        width: 120.0,
-                        child: Card(
-                          color: Colors.yellow.shade100,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          'Buy 1,,',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'GET 1 FREE',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-
-
-                    ],
-                  )
-              ),
-
-              _verticalDivider(),
-              Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-
-                      _verticalDivider(),
-                      Text('DISCOUNT', style: TextStyle(color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-                    ],
-                  )
-              ),
-
-              Container(
-                  height: 90.0,
-                  margin: EdgeInsets.only(left: 7.0,top: 5.0),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Container(
-                        height:80.0,
-
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          '10%',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'OR LESS',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-
-                      Container(
-                        height:80.0,
-
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          '20%',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'OR LESS',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        height:80.0,
-
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          '30%',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'OR LESS',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        height:80.0,
-
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 3.0,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: <Widget>[
-                              new Column(
-                                children: <Widget>[
-                                  new Container(
-                                    alignment: Alignment.centerLeft,
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-
-                                      children: <Widget>[
-                                        new Text(
-                                          '40%',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        _verticalDivider(),
-                                        new Text(
-                                          'OR LESS',
-                                          style: TextStyle(
-                                              color: Colors.black45,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.5),
-                                        ),
-
-
-
-
-                                      ],
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-
-                            ],
-                          ),
-                        ),
-                      ),
-
-
-                    ],
-                  )
-              ),
-
-              _verticalDivider(),
-              Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-
-                      _verticalDivider(),
-                      Text('AVAILIBILITY', style: TextStyle(color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-                    ],
-                  )
-              ),
-              _verticalDivider(),
-              Container(
-                  child: Align(
-                    alignment: const Alignment(0.0, -0.2),
-                      child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-
-                      _verticalDivider(),
-                      Radio<int>(
-                          value: 0,
-                          groupValue: radioValue,
-                          onChanged: handleRadioValueChanged
-                      ),
-
-                      Text('Available for this location', style: TextStyle(color: Colors.black54,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                      ),
-
-
-
-                    ],
-                  )
-                  )
-              ),
-
-
-
-
-            ]),
-      );
-    })
-        .closed.whenComplete(() {
-      if (mounted) {
-        setState(() { // re-enable the button
-          _showBottomSheetCallback = _showBottomSheet;
-        });
-      }
-    });
-  }
-
-  int radioValue = 0;
-  bool switchValue = false;
-
-  void handleRadioValueChanged(int value) {
-    setState(() {
-      radioValue = value;
-    });
-  }
-
-
 }
 
-class TravelDestinationItem extends StatelessWidget {
-  TravelDestinationItem({Key key, @required this.destination, this.shape})
-      : assert(destination != null),
+class ProductWidget extends StatelessWidget {
+  ProductWidget({Key key, @required this.product, this.shape})
+      : assert(product != null),
         super(key: key);
 
   static const double height = 566.0;
-  final Item destination;
+  final ProductDto product;
   final ShapeBorder shape;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final TextStyle titleStyle =
-        theme.textTheme.headline.copyWith(color: Colors.white);
     final TextStyle descriptionStyle = theme.textTheme.subhead;
 
     return SafeArea(
@@ -1275,8 +242,8 @@ class TravelDestinationItem extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Positioned.fill(
-                        child: Image.asset(
-                          destination.image,
+                        child: Image.network(
+                          product.images[0].src,
                           // package: destination.assetPackage,
                           fit: BoxFit.scaleDown,
                         ),
@@ -1307,7 +274,7 @@ class TravelDestinationItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
-                              destination.name,
+                              product.name,
                               style: descriptionStyle.copyWith(
                                   color: Colors.black87),
                             ),
@@ -1315,7 +282,7 @@ class TravelDestinationItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
-                              destination.price,
+                              product.price,
                               style: descriptionStyle.copyWith(
                                   color: Colors.black54),
                             ),

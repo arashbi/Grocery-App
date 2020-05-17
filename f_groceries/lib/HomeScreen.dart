@@ -192,7 +192,7 @@ class home extends State<Home_screen> {
                       leading: Icon(Icons.favorite),
                       title: new Text(name),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: name,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: name,)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -255,7 +255,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Best value',
@@ -268,7 +268,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Top sellers',
@@ -284,7 +284,7 @@ class home extends State<Home_screen> {
                     children: <Widget>[
                       new GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                         },
                         child: new Text(
                           'All',
@@ -494,7 +494,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Categories',
@@ -507,7 +507,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Popular',
@@ -522,7 +522,7 @@ class home extends State<Home_screen> {
                       children: <Widget>[
                         new GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
                           },
                           child: new Text(
                             'Whats New',
@@ -612,38 +612,32 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
-      },
 
-        child: new Container(
-            margin: EdgeInsets.all(5.0),
-            child: new Card(
-              shape: shapeBorder,
-              elevation: 3.0,
-              child: new Container(
-                //  mainAxisSize: MainAxisSize.max,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 152.0,
-                      child: CategoryCard(category: category),
-                    ),
-
-                     new Text(category.name, style: TextStyle(
-                         fontSize: 18.0,
-                         color: Colors.black87,
-                         fontWeight:
-                         FontWeight.bold),
-                     )
-                  ],
+    return new Container(
+        margin: EdgeInsets.all(5.0),
+        child: new Card(
+          shape: shapeBorder,
+          elevation: 3.0,
+          child: new Container(
+            //  mainAxisSize: MainAxisSize.max,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 152.0,
+                  child: CategoryCard(category: category),
                 ),
-              ),
-            )
-        )
 
+                 new Text(category.name, style: TextStyle(
+                     fontSize: 18.0,
+                     color: Colors.black87,
+                     fontWeight:
+                     FontWeight.bold),
+                 )
+              ],
+            ),
+          ),
+        )
     );
   }
 }
@@ -672,7 +666,7 @@ class CategoryCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: new GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemScreen(toolbarName: 'Fruits & Vegetables',)));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(categoryId: category.id.toString(), toolbarName: category.name,)));
             },
 
           ),

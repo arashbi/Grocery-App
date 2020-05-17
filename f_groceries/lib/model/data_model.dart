@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:f_groceries/logind_signup.dart';
@@ -15,7 +16,7 @@ abstract class ProductDto implements Built<ProductDto, ProductDtoBuilder> {
   String get status;
   String get description;
   String get price;
-
+  BuiltList<ImageDto> get images;
 
   ProductDto._();
   factory ProductDto([void Function(ProductDtoBuilder) updates]) = _$ProductDto;
@@ -23,14 +24,6 @@ abstract class ProductDto implements Built<ProductDto, ProductDtoBuilder> {
   factory ProductDto.fromJson(String source ) => serializers.deserializeWith(serializer, jsonDecode(source));
 }
 
-abstract class ProductsDto implements Built<ProductsDto, ProductsDtoBuilder> {
-
-  List<ProductDto> get products;
-  ProductsDto._();
-  factory ProductsDto([void Function(ProductsDtoBuilder) updates]) = _$ProductsDto;
-  static Serializer<ProductsDto> get serializer => _$productsDtoSerializer;
-  factory ProductsDto.fromJson(String source ) => serializers.deserializeWith(serializer, jsonDecode(source));
-}
 abstract class CategoryDto implements Built<CategoryDto, CategoryDtoBuilder> {
   int get id;
   String get name;

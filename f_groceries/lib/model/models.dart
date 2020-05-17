@@ -13,5 +13,18 @@ class CategoryModel extends ChangeNotifier {
         notifyListeners();
     });
   }
+}
 
+class ProductsModel extends ChangeNotifier {
+  String categoryId;
+
+  ProductsModel({this.categoryId});
+
+  BuiltList<ProductDto> _products = BuiltList.of([]);
+  BuiltList<ProductDto> get products => _products;
+
+  fetch() async {
+    _products = await fetchProducts(categoryId: this.categoryId);
+    notifyListeners();
+  }
 }
