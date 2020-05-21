@@ -1,5 +1,5 @@
 import 'package:f_groceries/checkout_screen.dart';
-import 'package:f_groceries/item_screen.dart';
+import 'package:f_groceries/products_screen.dart';
 import 'package:flutter/material.dart';
 
 enum DialogDemoAction {
@@ -154,7 +154,7 @@ class Cart extends State<Cart_screen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ItemsScreen()));
+                                  builder: (context) => ProductsScreen()));
                         }),
                   ],
                 ),

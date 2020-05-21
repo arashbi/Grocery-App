@@ -1,6 +1,7 @@
 import 'package:f_groceries/Cart_Screen.dart';
 import 'package:f_groceries/help_screen.dart';
-import 'package:f_groceries/item_screen.dart';
+import 'package:f_groceries/model/menu_bar_model.dart';
+import 'package:f_groceries/products_screen.dart';
 import 'package:f_groceries/logind_signup.dart';
 import 'package:f_groceries/model/models.dart';
 import 'package:f_groceries/orderhistory_screen.dart';
@@ -13,10 +14,9 @@ import 'model/data_model.dart';
 
 const String _kGalleryAssetsPackage = 'flutter_gallery_assets';
 
-class Home_screen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new home();
-// TODO: implement createState
 
 }
 
@@ -34,45 +34,10 @@ class Photo {
   final String caption;
 }
 
-class home extends State<Home_screen> {
+class home extends State<HomeScreen> {
   List list = ['12', '11'];
 
-//  List<CategoryDto> categories = <CategoryDto>[
-//    CategoryDto((builder) {
-//      builder.id = 1;
-//      builder.image = 'images/veg.jpg';
-//      builder.name = 'Fruits & Vegetables';
-//    }),
-//    CategoryDto((builder) {
-//      builder.id = 2;
-//      builder.image = 'images/frozen.jpg';
-//      builder.name = 'Frozen Veg';
-//  }),
-//    Photo(
-//      assetName: 'images/bev.jpg',
-//      title: 'Beverages',
-//    ),
-//    Photo(
-//      assetName: 'images/brand_f.jpg',
-//      title: 'Brannded Food',
-//    ),
-//    Photo(
-//      assetName: 'images/be.jpg',
-//      title: 'Beauty & Personal Care',
-//    ),
-//    Photo(
-//      assetName: 'images/home.jpg',
-//      title: 'Home Care & Fashion',
-//    ),
-//    Photo(
-//      assetName: 'images/nonveg.jpg',
-//      title: 'Non Veg',
-//    ),
-//    Photo(
-//      assetName: 'images/eggs.jpg',
-//      title: 'Dairy, Bakery & Eggs',
-//    ),
-//  ];
+
 
   final List<String> items = ['Balbhadra', 'Maulik', 'Roshi'];
   static const double height = 366.0;
@@ -192,7 +157,7 @@ class home extends State<Home_screen> {
                       leading: Icon(Icons.favorite),
                       title: new Text(name),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: name,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: name,)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -255,7 +220,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Best value',
@@ -268,7 +233,7 @@ class home extends State<Home_screen> {
                   _verticalD(),
                   new GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                     },
                     child: new Text(
                       'Top sellers',
@@ -284,7 +249,7 @@ class home extends State<Home_screen> {
                     children: <Widget>[
                       new GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                         },
                         child: new Text(
                           'All',
@@ -494,7 +459,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Categories',
@@ -507,7 +472,7 @@ class home extends State<Home_screen> {
                     _verticalD(),
                     new GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                       },
                       child: new Text(
                         'Popular',
@@ -522,7 +487,7 @@ class home extends State<Home_screen> {
                       children: <Widget>[
                         new GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(toolbarName: 'Fruits & Vegetables',)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: 'Fruits & Vegetables',)));
                           },
                           child: new Text(
                             'Whats New',
@@ -666,7 +631,8 @@ class CategoryCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: new GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ItemsScreen(categoryId: category.id.toString(), toolbarName: category.name,)));
+              Provider.of<SearchCriteriaModel>(context, listen: false).searchCategory = category.id.toString();
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: category.name,)));
             },
 
           ),

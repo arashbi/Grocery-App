@@ -43,3 +43,14 @@ abstract class ImageDto implements Built<ImageDto, ImageDtoBuilder> {
   static Serializer<ImageDto> get serializer => _$imageDtoSerializer;
   factory ImageDto.fromJson(String source ) => serializers.deserializeWith(serializer, jsonDecode(source));
 }
+abstract class SearchCriteria implements Built<SearchCriteria, SearchCriteriaBuilder> {
+  String get category;
+  String get searchTerm;
+  SearchCriteria._();
+  factory SearchCriteria([void Function(SearchCriteriaBuilder) updates]) = _$SearchCriteria;
+
+  static void _initializeBuilder(SearchCriteriaBuilder builder) => builder
+    ..category = ''
+    ..searchTerm = '';
+
+}

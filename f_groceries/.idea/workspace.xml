@@ -5,9 +5,32 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6efdcc7-037f-4da9-a29b-76fb98a2a24c" name="Default" comment="item screen working">
+    <list default="true" id="b6efdcc7-037f-4da9-a29b-76fb98a2a24c" name="Default" comment="Items page layout">
+      <change afterPath="$PROJECT_DIR$/lib/app_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/model/menu_bar_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/product_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/item_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/item_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Cart_Screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Cart_Screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/help_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/help_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/item_details.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/item_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/products_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logind_signup.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/logind_signup.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/data_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/data_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/models.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/models.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/orderhistory_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/orderhistory_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/woo/services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/woo/services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/setting_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/setting_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/endpoints.http" beforeDir="false" afterPath="$PROJECT_DIR$/test/endpoints.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +118,344 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1590077696000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1590077696%7C%7C1590074096%7C%7C1571e4f78ddd98a3c751e393adcc691f" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="search" />
+                <option name="value" value="" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1590077696000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1590077696%7C%7C1590074096%7C%7C1571e4f78ddd98a3c751e393adcc691f" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="a" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="search" />
+                <option name="value" value="" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1589816982000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1589816982%7C%7C1589813382%7C%7Cf273f3ab34f22d47ba71ff9a384078ac" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="a" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="search" />
+                <option name="value" value="null" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1589816982000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1589816982%7C%7C1589813382%7C%7Cf273f3ab34f22d47ba71ff9a384078ac" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="a" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="search" />
+                <option name="value" value="hood" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1589816982000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1589816982%7C%7C1589813382%7C%7Cf273f3ab34f22d47ba71ff9a384078ac" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="search" />
+                <option name="value" value="hood" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_cart_hash" />
+                <option name="path" value="/" />
+                <option name="value" value="f593ba596301b7ff0a17feea803109ee" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="-1" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="woocommerce_items_in_cart" />
+                <option name="path" value="/" />
+                <option name="value" value="1" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1589816982000" />
+                <option name="domain" value="pandasmooth.local" />
+                <option name="name" value="wp_woocommerce_session_77853965bd33171c069a1e0aa397c86a" />
+                <option name="path" value="/" />
+                <option name="value" value="1%7C%7C1589816982%7C%7C1589813382%7C%7Cf273f3ab34f22d47ba71ff9a384078ac" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://pandasmooth.local/wp-json/wc/v3/products" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="category" />
+                <option name="value" value="" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="biscuits">
             <list>
@@ -583,7 +944,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.endpoints#1">
+  <component name="RunManager" selected="HTTP Request.endpoints#2">
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -604,12 +965,10 @@
       <option name="testFile" value="$PROJECT_DIR$/test/test_http.dart" />
       <method v="2" />
     </configuration>
-    <configuration name="getting the product information" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
-      <option name="testName" value="getting the product information" />
-      <option name="testFile" value="$PROJECT_DIR$/test/test_http.dart" />
+    <configuration name="endpoints#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/test/endpoints.http" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="endpoints#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/test/endpoints.http" runType="Run single request">
+    <configuration name="endpoints#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/test/endpoints.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="rest-api_4#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_4.http" runType="Run single request">
@@ -645,11 +1004,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.endpoints#2" />
         <item itemvalue="HTTP Request.endpoints#1" />
         <item itemvalue="HTTP Request.rest-api_4#1" />
         <item itemvalue="HTTP Request.rest-api_4#2" />
         <item itemvalue="Flutter Test.getting all the products" />
-        <item itemvalue="Flutter Test.getting the product information" />
       </list>
     </recent_temporary>
   </component>
@@ -667,7 +1026,7 @@
       <workItem from="1589167574493" duration="5782000" />
       <workItem from="1589386231597" duration="1539000" />
       <workItem from="1589399287984" duration="1999000" />
-      <workItem from="1589467179001" duration="35435000" />
+      <workItem from="1589467179001" duration="71692000" />
     </task>
     <task id="LOCAL-00001" summary="fixing compilation errors.">
       <created>1589254730431</created>
@@ -690,7 +1049,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589690924887</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Items page layout">
+      <created>1589693099782</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589693099782</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,7 +1076,8 @@
     <MESSAGE value="fixing compilation errors." />
     <MESSAGE value="categories" />
     <MESSAGE value="item screen working" />
-    <option name="LAST_COMMIT_MESSAGE" value="item screen working" />
+    <MESSAGE value="Items page layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Items page layout" />
   </component>
   <component name="WindowStateProjectService">
     <state x="704" y="421" key="#com.intellij.ws.actions.HttpClientConvertFromCurlDialog" timestamp="1589644150907">
@@ -721,59 +1088,63 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="625" y="237" key="#rest-api_4#1/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589594693681" />
-    <state x="666" y="202" key="#xdebugger.evaluate" timestamp="1589656988830">
+    <state x="661" y="381" key="#xdebugger.evaluate" timestamp="1589913563195">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="666" y="202" key="#xdebugger.evaluate/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589656988830" />
-    <state x="465" y="97" key="CommitChangelistDialog2" timestamp="1589690924507">
+    <state x="661" y="381" key="#xdebugger.evaluate/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589913563195" />
+    <state x="809" y="312" key="AndroidProcessChooserDialog" timestamp="1589742907682">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="809" y="312" key="AndroidProcessChooserDialog/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589742907682" />
+    <state x="465" y="97" key="CommitChangelistDialog2" timestamp="1589693099586">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="465" y="76" key="CommitChangelistDialog2/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589254729994" />
-    <state x="465" y="97" key="CommitChangelistDialog2/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589690924507" />
-    <state width="1868" height="347" key="GridCell.Tab.0.bottom" timestamp="1589692976956">
+    <state x="465" y="97" key="CommitChangelistDialog2/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589693099586" />
+    <state width="1868" height="497" key="GridCell.Tab.0.bottom" timestamp="1590006478272">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455897" />
     <state width="1403" height="523" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1680.23.1680.1027@0.0.1920.1080" timestamp="1589475361270" />
-    <state width="1868" height="347" key="GridCell.Tab.0.bottom/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976956" />
-    <state width="1868" height="347" key="GridCell.Tab.0.center" timestamp="1589692976954">
+    <state width="1868" height="497" key="GridCell.Tab.0.bottom/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478272" />
+    <state width="1868" height="497" key="GridCell.Tab.0.center" timestamp="1590006478270">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.0.center/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455895" />
     <state width="1403" height="523" key="GridCell.Tab.0.center/0.0.1920.1080/-1680.23.1680.1027@0.0.1920.1080" timestamp="1589475361267" />
-    <state width="1868" height="347" key="GridCell.Tab.0.center/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976954" />
-    <state width="1868" height="347" key="GridCell.Tab.0.left" timestamp="1589692976953">
+    <state width="1868" height="497" key="GridCell.Tab.0.center/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478270" />
+    <state width="1868" height="497" key="GridCell.Tab.0.left" timestamp="1590006478269">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.0.left/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455895" />
     <state width="1403" height="523" key="GridCell.Tab.0.left/0.0.1920.1080/-1680.23.1680.1027@0.0.1920.1080" timestamp="1589475361266" />
-    <state width="1868" height="347" key="GridCell.Tab.0.left/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976953" />
-    <state width="1868" height="347" key="GridCell.Tab.0.right" timestamp="1589692976955">
+    <state width="1868" height="497" key="GridCell.Tab.0.left/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478269" />
+    <state width="1868" height="497" key="GridCell.Tab.0.right" timestamp="1590006478271">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.0.right/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455896" />
     <state width="1403" height="523" key="GridCell.Tab.0.right/0.0.1920.1080/-1680.23.1680.1027@0.0.1920.1080" timestamp="1589475361269" />
-    <state width="1868" height="347" key="GridCell.Tab.0.right/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976955" />
-    <state width="1868" height="347" key="GridCell.Tab.1.bottom" timestamp="1589692976959">
+    <state width="1868" height="497" key="GridCell.Tab.0.right/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478271" />
+    <state width="1253" height="347" key="GridCell.Tab.1.bottom" timestamp="1590006478173">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.1.bottom/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455900" />
-    <state width="1868" height="347" key="GridCell.Tab.1.bottom/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976959" />
-    <state width="1868" height="347" key="GridCell.Tab.1.center" timestamp="1589692976958">
+    <state width="1253" height="347" key="GridCell.Tab.1.bottom/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478173" />
+    <state width="1253" height="347" key="GridCell.Tab.1.center" timestamp="1590006478172">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.1.center/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455898" />
-    <state width="1868" height="347" key="GridCell.Tab.1.center/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976958" />
-    <state width="1868" height="347" key="GridCell.Tab.1.left" timestamp="1589692976957">
+    <state width="1253" height="347" key="GridCell.Tab.1.center/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478172" />
+    <state width="1253" height="347" key="GridCell.Tab.1.left" timestamp="1590006478172">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.1.left/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455898" />
-    <state width="1868" height="347" key="GridCell.Tab.1.left/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976957" />
-    <state width="1868" height="347" key="GridCell.Tab.1.right" timestamp="1589692976958">
+    <state width="1253" height="347" key="GridCell.Tab.1.left/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478172" />
+    <state width="1253" height="347" key="GridCell.Tab.1.right" timestamp="1590006478173">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state width="1868" height="361" key="GridCell.Tab.1.right/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483455899" />
-    <state width="1868" height="347" key="GridCell.Tab.1.right/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589692976958" />
+    <state width="1253" height="347" key="GridCell.Tab.1.right/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1590006478173" />
     <state x="707" y="204" key="RollbackChangesDialog" timestamp="1589691471725">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
@@ -783,45 +1154,48 @@
     </state>
     <state x="372" y="79" key="SettingsEditor/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589483432192" />
     <state x="372" y="100" key="SettingsEditor/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589569422919" />
-    <state width="625" height="764" key="SwitcherDM" timestamp="1589656618741">
+    <state width="625" height="764" key="SwitcherDM" timestamp="1589915062563">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state width="625" height="764" key="SwitcherDM/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589486744630" />
-    <state width="625" height="764" key="SwitcherDM/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589656618741" />
-    <state x="808" y="462" key="VCS.ChangelistChooser" timestamp="1589569325409">
+    <state width="625" height="764" key="SwitcherDM/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589768707952" />
+    <state width="625" height="764" key="SwitcherDM/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589915062563" />
+    <state x="808" y="462" key="VCS.ChangelistChooser" timestamp="1589754959514">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="808" y="462" key="VCS.ChangelistChooser/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589569325409" />
-    <state x="460" y="219" key="Vcs.Push.Dialog.v2" timestamp="1589254741674">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="808" y="462" key="VCS.ChangelistChooser/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589754959514" />
+    <state x="460" y="237" key="Vcs.Push.Dialog.v2" timestamp="1589743193856">
+      <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="460" y="219" key="Vcs.Push.Dialog.v2/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589254741674" />
+    <state x="460" y="237" key="Vcs.Push.Dialog.v2/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589743193856" />
     <state x="193" y="331" width="1720" height="857" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589693040615">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="193" y="331" width="1720" height="857" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589693040615" />
-    <state x="437" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589468350790">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="437" y="89" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589908950609">
+      <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="437" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589468350790" />
+    <state x="437" y="89" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589908950609" />
     <state x="418" y="226" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589469738484">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="418" y="226" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589469738484" />
-    <state x="568" y="267" width="784" height="546" key="find.popup" timestamp="1589255254935">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="568" y="284" width="784" height="546" key="find.popup" timestamp="1589911547481">
+      <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="568" y="267" width="784" height="546" key="find.popup/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589255254935" />
+    <state x="568" y="284" width="784" height="546" key="find.popup/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589911547481" />
     <state x="522" y="209" width="875" height="663" key="recent.locations.popup" timestamp="1589655727704">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="522" y="209" width="875" height="663" key="recent.locations.popup/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589655727704" />
-    <state x="541" y="70" width="838" height="1011" key="search.everywhere.popup" timestamp="1589693088517">
+    <state x="541" y="70" width="838" height="1011" key="search.everywhere.popup" timestamp="1589913935695">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="541" y="48" width="838" height="1032" key="search.everywhere.popup/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589485905893" />
+    <state x="541" y="48" width="838" height="1032" key="search.everywhere.popup/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1589769050832" />
     <state x="541" y="48" width="838" height="1032" key="search.everywhere.popup/0.0.1920.1080/-1680.23.1680.1027@0.0.1920.1080" timestamp="1589474807999" />
-    <state x="541" y="70" width="838" height="1011" key="search.everywhere.popup/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589693088517" />
+    <state x="541" y="70" width="838" height="1011" key="search.everywhere.popup/0.23.1920.1057/-1680.23.1680.1027@0.23.1920.1057" timestamp="1589913935695" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -867,18 +1241,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/services/woo/services.dart</url>
-          <line>31</line>
+          <line>34</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/services/woo/services.dart</url>
-          <line>30</line>
+          <line>33</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/item_screen.dart</url>
+          <url>file://$PROJECT_DIR$/lib/products_screen.dart</url>
           <line>12</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/products_screen.dart</url>
+          <line>86</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -1,7 +1,5 @@
 import 'package:f_groceries/Cart_Screen.dart';
-import 'package:f_groceries/item_details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_range_slider/flutter_range_slider.dart';
 
 class Setting_Screen extends StatefulWidget {
   final String toolbarname;
@@ -28,7 +26,7 @@ class Setting extends State<Setting_Screen> {
     // TODO: implement build
     final ThemeData theme = Theme.of(context);
     final TextStyle dialogTextStyle =
-        theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+        theme.textTheme.subtitle1.copyWith(color: theme.textTheme.caption.color);
 
     IconData _backIcon() {
       switch (Theme.of(context).platform) {
@@ -37,12 +35,11 @@ class Setting extends State<Setting_Screen> {
           return Icons.arrow_back;
         case TargetPlatform.iOS:
           return Icons.arrow_back_ios;
+        default:
+          return Icons.arrow_back;
       }
-      assert(false);
-      return null;
     }
 
-    final Orientation orientation = MediaQuery.of(context).orientation;
     return new Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(

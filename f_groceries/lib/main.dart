@@ -1,21 +1,31 @@
 import 'dart:io';
 
-import 'package:f_groceries/HomeScreen.dart';
+import 'package:f_groceries/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:provider/provider.dart';
+import 'model/menu_bar_model.dart';
 
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  runApp(new MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create:  (_)=> SearchCriteriaModel()),
+      ChangeNotifierProxyProvider<SearchCriteriaModel,MenuBarModel> (
+        update: (context, SearchCriteriaModel scm, MenuBarModel _ ) => MenuBarModel(scm),
+      )
+    ],
+    child: MyApp(),
+  ) );
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-        theme: new ThemeData(
+    return  MaterialApp(
+        theme:  ThemeData(
           // This is the theme of your application.
           //
           // Try running your application with "flutter run". You'll see the
@@ -61,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void navigationPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Home_screen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
   }
 

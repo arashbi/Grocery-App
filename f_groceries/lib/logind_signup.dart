@@ -1,4 +1,4 @@
-import 'package:f_groceries/HomeScreen.dart';
+import 'package:f_groceries/home_screen.dart';
 import 'package:f_groceries/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -263,7 +263,7 @@ class login extends State<Login_Screen> {
   }
   void _performLogin() {
     // This is just a demo, so no actual login here.
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> Home_screen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
   }
 
   _verticalD() => Container(

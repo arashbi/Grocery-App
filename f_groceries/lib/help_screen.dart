@@ -1,7 +1,5 @@
 import 'package:f_groceries/Cart_Screen.dart';
-import 'package:f_groceries/item_details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_range_slider/flutter_range_slider.dart';
 
 class Help_Screen extends StatefulWidget {
   final String toolbarname;
@@ -27,8 +25,8 @@ class Help extends State<Help_Screen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     final ThemeData theme = Theme.of(context);
-    final TextStyle dialogTextStyle =
-    theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+    final TextStyle dialogTextStyle = theme.textTheme.subtitle1
+        .copyWith(color: theme.textTheme.caption.color);
 
     IconData _backIcon() {
       switch (Theme.of(context).platform) {
@@ -37,12 +35,12 @@ class Help extends State<Help_Screen> {
           return Icons.arrow_back;
         case TargetPlatform.iOS:
           return Icons.arrow_back_ios;
+        default:
+          return Icons.arrow_back;
+
       }
-      assert(false);
-      return null;
     }
 
-    final Orientation orientation = MediaQuery.of(context).orientation;
     return new Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -60,7 +58,6 @@ class Help extends State<Help_Screen> {
         body: Container(
           child: Column(
             children: <Widget>[
-
               new Container(
                 height: 50.0,
                 alignment: Alignment.topLeft,
@@ -90,146 +87,144 @@ class Help extends State<Help_Screen> {
                 margin: EdgeInsets.only(left: 10.0),
                 child: Card(
                     child: Container(
-                      //  padding: EdgeInsets.only(left: 10.0,top: 15.0,bottom: 5.0,right: 5.0),
+                  //  padding: EdgeInsets.only(left: 10.0,top: 15.0,bottom: 5.0,right: 5.0),
 
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0, top: 15.0, bottom: 15.0),
-                              child: GestureDetector(
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(Icons.mail, color: Colors.black54),
-                                    Container(
-                                      margin: EdgeInsets.only(left: 5.0),
-                                    ),
-                                    Text(
-                                      'Email US',
-                                      style: TextStyle(
-                                        fontSize: 17.0,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ],
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                          padding: EdgeInsets.only(
+                              left: 10.0, top: 15.0, bottom: 15.0),
+                          child: GestureDetector(
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.mail, color: Colors.black54),
+                                Container(
+                                  margin: EdgeInsets.only(left: 5.0),
                                 ),
-                                onTap: () {
-                                  showDemoDialog<DialogDemoAction>(
-                                      context: context,
-                                      child: AlertDialog(
-                                          title: const Text('Terms Use'),
-                                          content: Text(
-                                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                              style: dialogTextStyle),
-                                          actions: <Widget>[
-                                            FlatButton(
-                                                child: const Text('DISAGREE'),
-                                                onPressed: () {
-                                                  Navigator.pop(context,
-                                                      DialogDemoAction.disagree);
-                                                }),
-                                            /*  FlatButton(
+                                Text(
+                                  'Email US',
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              showDemoDialog<DialogDemoAction>(
+                                  context: context,
+                                  child: AlertDialog(
+                                      title: const Text('Terms Use'),
+                                      content: Text(
+                                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                          style: dialogTextStyle),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                            child: const Text('DISAGREE'),
+                                            onPressed: () {
+                                              Navigator.pop(context,
+                                                  DialogDemoAction.disagree);
+                                            }),
+                                        /*  FlatButton(
                                             child: const Text('AGREE'),
                                             onPressed: () {
                                               Navigator.pop(context,
                                                   DialogDemoAction.agree);
                                             })*/
-                                          ]));
-                                },
-                              )),
-                          Divider(
-                            height: 5.0,
-                          ),
-                          Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0, top: 15.0, bottom: 15.0),
-                              child: GestureDetector(
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(Icons.info,
-                                          color: Colors.black54),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 5.0),
-                                      ),
-                                      Text(
-                                        'About US',
-                                        style: TextStyle(
-                                            fontSize: 17.0, color: Colors.black87),
-                                      ),
-                                    ],
-                                  ),
-                                  onTap: () {
-                                    showDemoDialog<DialogDemoAction>(
-                                        context: context,
-                                        child: AlertDialog(
-                                            title: const Text('About Us'),
-                                            content: Text(
-                                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                                style: dialogTextStyle),
-                                            actions: <Widget>[
-                                              FlatButton(
-                                                  child: const Text('DISAGREE'),
-                                                  onPressed: () {
-                                                    Navigator.pop(context,
-                                                        DialogDemoAction.disagree);
-                                                  }),
-                                              /* FlatButton(
-                                              child: const Text('AGREE'),
-                                              onPressed: () {
-                                                Navigator.pop(context,
-                                                    DialogDemoAction.agree);
-                                              })*/
-                                            ]));
-                                  })),
-                          Divider(
-                            height: 5.0,
-                          ),
-                          Container(
-                              padding: EdgeInsets.only(
-                                  left: 10.0, top: 15.0, bottom: 15.0),
-                              child: GestureDetector(
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(Icons.feedback,
-                                          color: Colors.black54),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 5.0),
-                                      ),
-                                      Text(
-                                        'Send Feedback',
-                                        style: TextStyle(
-                                            fontSize: 17.0, color: Colors.black87),
-                                      ),
-                                    ],
-                                  ),
-                                  onTap: () {
-                                    showDemoDialog<DialogDemoAction>(
-                                        context: context,
-                                        child: AlertDialog(
-                                            title: const Text('Send Feedback'),
-                                            content: Text(
-                                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                                style: dialogTextStyle),
-                                            actions: <Widget>[
-                                              FlatButton(
-                                                  child: const Text('DISAGREE'),
-                                                  onPressed: () {
-                                                    Navigator.pop(context,
-                                                        DialogDemoAction.disagree);
-                                                  }),
-                                              /* FlatButton(
-                                              child: const Text('AGREE'),
-                                              onPressed: () {
-                                                Navigator.pop(context,
-                                                    DialogDemoAction.agree);
-                                              })*/
-                                            ]));
-                                  })),
-                        ],
+                                      ]));
+                            },
+                          )),
+                      Divider(
+                        height: 5.0,
                       ),
-                    )),
+                      Container(
+                          padding: EdgeInsets.only(
+                              left: 10.0, top: 15.0, bottom: 15.0),
+                          child: GestureDetector(
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.info, color: Colors.black54),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5.0),
+                                  ),
+                                  Text(
+                                    'About US',
+                                    style: TextStyle(
+                                        fontSize: 17.0, color: Colors.black87),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                showDemoDialog<DialogDemoAction>(
+                                    context: context,
+                                    child: AlertDialog(
+                                        title: const Text('About Us'),
+                                        content: Text(
+                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                            style: dialogTextStyle),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                              child: const Text('DISAGREE'),
+                                              onPressed: () {
+                                                Navigator.pop(context,
+                                                    DialogDemoAction.disagree);
+                                              }),
+                                          /* FlatButton(
+                                              child: const Text('AGREE'),
+                                              onPressed: () {
+                                                Navigator.pop(context,
+                                                    DialogDemoAction.agree);
+                                              })*/
+                                        ]));
+                              })),
+                      Divider(
+                        height: 5.0,
+                      ),
+                      Container(
+                          padding: EdgeInsets.only(
+                              left: 10.0, top: 15.0, bottom: 15.0),
+                          child: GestureDetector(
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.feedback, color: Colors.black54),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5.0),
+                                  ),
+                                  Text(
+                                    'Send Feedback',
+                                    style: TextStyle(
+                                        fontSize: 17.0, color: Colors.black87),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                showDemoDialog<DialogDemoAction>(
+                                    context: context,
+                                    child: AlertDialog(
+                                        title: const Text('Send Feedback'),
+                                        content: Text(
+                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                            style: dialogTextStyle),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                              child: const Text('DISAGREE'),
+                                              onPressed: () {
+                                                Navigator.pop(context,
+                                                    DialogDemoAction.disagree);
+                                              }),
+                                          /* FlatButton(
+                                              child: const Text('AGREE'),
+                                              onPressed: () {
+                                                Navigator.pop(context,
+                                                    DialogDemoAction.agree);
+                                              })*/
+                                        ]));
+                              })),
+                    ],
+                  ),
+                )),
               )
             ],
           ),
@@ -251,12 +246,9 @@ class Help extends State<Help_Screen> {
   }
 
   _verticalD() => Container(
-    margin: EdgeInsets.only(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
-  );
+        margin: EdgeInsets.only(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
+      );
 
-  _verticalDivider() => Container(
-    padding: EdgeInsets.all(2.0),
-  );
 
   Widget _status(status) {
     if (status == 'Cabcel Order') {
@@ -291,8 +283,8 @@ class Help extends State<Help_Screen> {
   }
 
   erticalD() => Container(
-    margin: EdgeInsets.only(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
-  );
+        margin: EdgeInsets.only(left: 10.0, right: 0.0, top: 0.0, bottom: 0.0),
+      );
 
   bool a = true;
   String mText = "Press to hide";

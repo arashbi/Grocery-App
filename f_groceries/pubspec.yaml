@@ -28,6 +28,7 @@ dependencies:
   built_collection:
   provider:
   json_annotation:
+  flutter_html:
 dev_dependencies:
   flutter_test:
     sdk: flutter
