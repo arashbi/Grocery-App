@@ -1,27 +1,28 @@
-import 'package:f_groceries/model/menu_bar_model.dart';
+import 'package:f_groceries/blocs/menu/menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class MenuBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<MenuBarModel>(
-      builder: (BuildContext context, MenuBarModel model, Widget child) {
-        return !model.searching ? _normal(context, model) : _seaching(context, model);
+    return BlocBuilder<MenuBloc, MenuState>(
+      builder: (BuildContext context,  state) {
+        return (state is RestingState) ? _normal(context, state) : _seaching(context, state);
       },
     );
   }
-  _normal (BuildContext context, MenuBarModel model) {
+  _normal (BuildContext context, RestingState state) {
 
     return AppBar(
-        title: Text(model.title),
+        title: Text(state.title),
         actions: [
           IconButton(
             tooltip: 'Search',
             icon: const Icon(Icons.search),
             onPressed: () async {
-              model.searching = true;
+             Provider.of<MenuBloc>(context).add(SearchStarted());
             },
           ),
           IconButton(
@@ -46,7 +47,7 @@ class MenuBar extends StatelessWidget implements PreferredSizeWidget {
                           right: 5.5,
                           child: new Center(
                             child: new Text(
-                              model.purchaseCount.toString(),
+                              "3",
                               style: new TextStyle(
                                   color: Colors.white,
                                   fontSize: 11.0,
@@ -63,7 +64,7 @@ class MenuBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
-  _seaching(BuildContext context, MenuBarModel model) {
+  _seaching(BuildContext context, MenuState state) {
     var controller = TextEditingController();
     controller.addListener(() {
       debugPrint(controller.value.text);
@@ -83,7 +84,7 @@ class MenuBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.close),
-          onPressed: () => model.searching = false,
+          onPressed: () => Provider.of<MenuBloc>(context).add(SearchUpdated(controller.text)),
         )
       ],
     );

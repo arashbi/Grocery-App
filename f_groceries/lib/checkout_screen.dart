@@ -27,6 +27,8 @@ class check_out extends State<Checkout> {
         return Icons.arrow_back;
       case TargetPlatform.iOS:
         return Icons.arrow_back_ios;
+      default:
+        return Icons.arrow_back;
     }
     assert(false);
     return null;
@@ -571,6 +573,8 @@ class check_out extends State<Checkout> {
         return Icons.add;
       case TargetPlatform.iOS:
         return Icons.arrow_back_ios;
+      default:
+        return Icons.add;
     }
     assert(false);
     return null;
@@ -582,6 +586,8 @@ class check_out extends State<Checkout> {
         return Icons.remove;
       case TargetPlatform.iOS:
         return Icons.arrow_back_ios;
+      default:
+        return Icons.remove;
     }
     assert(false);
     return null;

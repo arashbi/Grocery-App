@@ -1,47 +1,23 @@
-import 'package:f_groceries/Cart_Screen.dart';
+import 'package:f_groceries/app_bar.dart';
+import 'package:f_groceries/blocs/categories/categories.dart';
+import 'package:f_groceries/blocs/search/search.dart';
 import 'package:f_groceries/help_screen.dart';
-import 'package:f_groceries/model/menu_bar_model.dart';
-import 'package:f_groceries/products_screen.dart';
 import 'package:f_groceries/logind_signup.dart';
-import 'package:f_groceries/model/models.dart';
 import 'package:f_groceries/orderhistory_screen.dart';
+import 'package:f_groceries/products_screen.dart';
 import 'package:f_groceries/setting_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'Account_screen.dart';
 import 'model/data_model.dart';
 
-const String _kGalleryAssetsPackage = 'flutter_gallery_assets';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => new home();
+class HomeScreen extends StatelessWidget {
 
-}
-
-class Photo {
-  Photo({
-    this.assetName,
-    this.assetPackage,
-    this.title,
-    this.caption,
-  });
-
-  final String assetName;
-  final String assetPackage;
-  final String title;
-  final String caption;
-}
-
-class home extends State<HomeScreen> {
-  List list = ['12', '11'];
-
-
-
-  final List<String> items = ['Balbhadra', 'Maulik', 'Roshi'];
-  static const double height = 366.0;
-  String name ='My Wishlist';
+ static const double height = 366.0;
+  final String name ='My Wishlist';
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -50,78 +26,28 @@ class home extends State<HomeScreen> {
     final TextStyle titleStyle =
         theme.textTheme.headline.copyWith(color: Colors.black54);
     final TextStyle descriptionStyle = theme.textTheme.subhead;
-    ShapeBorder shapeBorder;
+
+    return _Scaffold();
+  }
 
 
+
+}
+class _Scaffold extends StatelessWidget {
+   _verticalD() => Container(
+    margin: EdgeInsets.only(left: 5.0, right: 0.0, top: 5.0, bottom: 0.0),
+  );
+  final Icon keyloch = new Icon(
+    Icons.arrow_forward,
+    color: Colors.black26,
+  );
+
+  ShapeBorder shapeBorder;
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
-      appBar: new AppBar(
-        backgroundColor: Colors.white,
-
-        title: Text("Grocery store"),
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Search',
-            icon: const Icon(Icons.search),
-            onPressed: () async {
-              final int selected = await showSearch<int>(
-                context: context,
-                //delegate: _delegate,
-              );
-
-            },
-          ),
-           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 150.0,
-              width: 30.0,
-              child: new GestureDetector(
-                onTap: () {
-                  /*Navigator.of(context).push(
-                  new MaterialPageRoute(
-                      builder:(BuildContext context) =>
-                      new CartItemsScreen()
-                  )
-              );*/
-                },
-                child: Stack(
-                  children: <Widget>[
-                    new IconButton(
-                        icon: new Icon(
-                          Icons.shopping_cart,
-                          color: Colors.black,
-                        ),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart_screen()));
-                        }),
-                    list.length == 0
-                        ? new Container()
-                        : new Positioned(
-                            child: new Stack(
-                            children: <Widget>[
-                              new Icon(Icons.brightness_1,
-                                  size: 20.0, color: Colors.orange.shade500),
-                              new Positioned(
-                                  top: 4.0,
-                                  right: 5.5,
-                                  child: new Center(
-                                    child: new Text(
-                                      list.length.toString(),
-                                      style: new TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11.0,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  )),
-                            ],
-                          )),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+      appBar: MenuBar(),
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
@@ -155,9 +81,9 @@ class home extends State<HomeScreen> {
                 children: <Widget>[
                   new ListTile(
                       leading: Icon(Icons.favorite),
-                      title: new Text(name),
+                      title: new Text("name"),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: name,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: "Toolbar",)));
                       }),
                   new Divider(),
                   new ListTile(
@@ -201,7 +127,7 @@ class home extends State<HomeScreen> {
                   title: new Text(
                     "Logout",
                     style:
-                        new TextStyle(color: Colors.redAccent, fontSize: 17.0),
+                    new TextStyle(color: Colors.redAccent, fontSize: 17.0),
                   ),
                   onTap: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => Login_Screen()));
@@ -210,7 +136,8 @@ class home extends State<HomeScreen> {
           ],
         ),
       ),
-      body: new SingleChildScrollView(
+      body:
+      SingleChildScrollView(
         child: Container(
           child: new Column(children: <Widget>[
             new Row(
@@ -271,7 +198,7 @@ class home extends State<HomeScreen> {
               height: 188.0,
               margin: EdgeInsets.only(left: 5.0),
               child:
-                  ListView(scrollDirection: Axis.horizontal, children: <Widget>[
+              ListView(scrollDirection: Axis.horizontal, children: <Widget>[
                 SafeArea(
                   top: true,
                   bottom: true,
@@ -450,7 +377,7 @@ class home extends State<HomeScreen> {
                 ),
               ]),
             ),
-            new Container(
+            Container(
               margin: EdgeInsets.only(top: 7.0),
               child: new Row(
                   mainAxisSize: MainAxisSize.max,
@@ -501,48 +428,26 @@ class home extends State<HomeScreen> {
                     )
                   ]),
             ),
-             ChangeNotifierProvider(
-                create: (context) => CategoryModel()..fetch(),
-                child: Consumer<CategoryModel>(
-                  builder: (context, categoryModel, child) => CategoriesWidget(categoryModel: categoryModel, shapeBorder: shapeBorder))
-                )
+            BlocProvider<CategoryBloc>(
+                create: (context) => CategoryBloc(),
+                child: BlocBuilder<CategoryBloc, CategoryState>(
+                    builder: (context, state) => CategoriesWidget(state: state, shapeBorder: shapeBorder))
+            )
           ]),
         ),
       ),
     );
   }
 
-/*
-  new Container(
-  alignment: Alignment.topCenter,
-  child: GridView.count(
-  primary: true,
-  crossAxisCount: 2,
-  childAspectRatio: 0.80,
-  children: List.generate(photos.length, (index) {
-  return getStructuredGridCell(photos[index]);
-  }),
-  ))*/
-  Icon keyloch = new Icon(
-    Icons.arrow_forward,
-    color: Colors.black26,
-  );
-
-  _verticalD() => Container(
-        margin: EdgeInsets.only(left: 5.0, right: 0.0, top: 5.0, bottom: 0.0),
-      );
-
-
 }
-
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({
     Key key,
-    @required this.categoryModel,
+    @required this.state,
     @required this.shapeBorder,
   }) : super(key: key);
 
-  final CategoryModel categoryModel;
+  final CategoryState state;
   final ShapeBorder shapeBorder;
 
   @override
@@ -552,14 +457,14 @@ class CategoriesWidget extends StatelessWidget {
               height: 700.0,
 
               child: new GridView.builder(
-      itemCount: categoryModel.categories.length,
+      itemCount: state.categories.length,
       primary: false,
       physics: NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(10.0),
       gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
-        return CategoryWidget(shapeBorder: shapeBorder, category: categoryModel.categories[index]);
+        return CategoryWidget(shapeBorder: shapeBorder, category: state.categories[index]);
       }),
             );
   }
@@ -631,7 +536,8 @@ class CategoryCard extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: new GestureDetector(
             onTap: () {
-              Provider.of<SearchCriteriaModel>(context, listen: false).searchCategory = category.id.toString();
+              BlocProvider.of<SearchBloc>(context).add(Search(SearchCriteria((b)=> b..category = category.id.toString())));
+              debugPrint("category is ${category.id}");
               Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen(toolbarName: category.name,)));
             },
 

@@ -3,28 +3,33 @@ import 'dart:io';
 import 'package:f_groceries/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:provider/provider.dart';
-import 'model/menu_bar_model.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+  import 'blocs/menu/menu.dart';
+import 'blocs/search/search.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create:  (_)=> SearchCriteriaModel()),
-      ChangeNotifierProxyProvider<SearchCriteriaModel,MenuBarModel> (
-        update: (context, SearchCriteriaModel scm, MenuBarModel _ ) => MenuBarModel(scm),
-      )
-    ],
-    child: MyApp(),
-  ) );
+  runApp(
+       MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  MultiBlocProvider(
+        providers: [
+        BlocProvider<SearchBloc>(
+        create: (context) => SearchBloc(),
+    ),
+    BlocProvider<MenuBloc> (
+    create: (context) => MenuBloc(BlocProvider.of<SearchBloc>(context))
+    )],
+
+    child: MaterialApp(
         theme:  ThemeData(
           // This is the theme of your application.
           //
@@ -41,7 +46,7 @@ class MyApp extends StatelessWidget {
 
         ),
       home: new MyHomePage(title: 'Groceries'),
-    );
+    ));
   }
 }
 

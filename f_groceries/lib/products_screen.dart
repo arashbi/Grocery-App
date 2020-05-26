@@ -1,13 +1,15 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:f_groceries/Cart_Screen.dart';
+import 'package:f_groceries/blocs/products/products.dart';
+import 'package:f_groceries/blocs/search/search.dart';
 import 'package:f_groceries/model/menu_bar_model.dart';
 import 'package:f_groceries/product_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
 import 'package:provider/provider.dart';
-
 import 'app_bar.dart';
 import 'model/data_model.dart';
-import 'model/models.dart';
 
 class ProductsScreen extends StatelessWidget {
   final String toolbarName;
@@ -30,19 +32,15 @@ class ProductsScreen extends StatelessWidget {
         children: <Widget>[
           Container(
               // height: 500.0,
-              child: ChangeNotifierProxyProvider<SearchCriteriaModel, ProductsModel>(
-                update: (context, scm, ProductsModel productsModel) {
-                  if(productsModel == null ) {
-                    productsModel = ProductsModel();
-                  }
-                  productsModel.searchCriteria = scm;
-                  return productsModel;
+              child: BlocProvider<ProductsBloc>(
+                create: (context) {
+                  return ProductsBloc(BlocProvider.of<SearchBloc>(context));
                 },
-                child: Consumer<ProductsModel>(
-                  builder: (context, productsModel, child) {
-                    return  productsModel.products.length == 0 ?Expanded(
+                child: BlocBuilder<ProductsBloc, ProductsState>(
+                  builder: (context, state) {
+                    return  (state is ProductsLoading) ? Expanded(
                       child: Center(child: CircularProgressIndicator()),
-                    ) : ProductsGrid(productsModel: productsModel);
+                    ) : ProductsGrid(products: (state as SearchDone).products);
                   })
     ),
     )
@@ -74,21 +72,15 @@ class ProductsScreen extends StatelessWidget {
 }
 
 class ProductsGrid extends StatelessWidget {
-  final ProductsModel productsModel;
+  final BuiltList<ProductDto> products;
   const ProductsGrid({
     Key key,
-    this.productsModel
+    this.products
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var menubar = context.watch<MenuBarModel>();
-    if(menubar.title != "Products") {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        menubar.title = "Products";
-      });
-    }
-
+    
     return Expanded(
       child: GridView.count(
       crossAxisCount: 2,
@@ -97,7 +89,7 @@ class ProductsGrid extends StatelessWidget {
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       padding: const EdgeInsets.all(4.0),
-      children: productsModel.products.map((ProductDto aProduct) {
+      children: products.map((ProductDto aProduct) {
         return ProductWidget(
         product: aProduct,
       );

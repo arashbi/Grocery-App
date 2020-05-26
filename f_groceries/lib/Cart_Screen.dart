@@ -67,6 +67,8 @@ class Cart extends State<Cart_screen> {
         return Icons.arrow_back;
       case TargetPlatform.iOS:
         return Icons.arrow_back_ios;
+      default:
+        return Icons.arrow_back;
     }
     assert(false);
     return null;
@@ -84,6 +86,8 @@ class Cart extends State<Cart_screen> {
           return Icons.add_circle;
         case TargetPlatform.iOS:
           return Icons.add_circle;
+        default:
+          return Icons.add_circle;
       }
       assert(false);
       return null;
@@ -94,6 +98,8 @@ class Cart extends State<Cart_screen> {
         case TargetPlatform.fuchsia:
           return Icons.remove_circle;
         case TargetPlatform.iOS:
+          return Icons.remove_circle;
+        default:
           return Icons.remove_circle;
       }
       assert(false);

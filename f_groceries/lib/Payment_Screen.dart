@@ -26,6 +26,8 @@ class payment extends State<Patment> {
         return Icons.arrow_back;
       case TargetPlatform.iOS:
         return Icons.arrow_back_ios;
+      default:
+        return Icons.arrow_back;
     }
     assert(false);
     return null;
