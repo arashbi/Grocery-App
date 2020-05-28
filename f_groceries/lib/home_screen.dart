@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Account_screen.dart';
 import 'model/data_model.dart';
-
+import 'package:transparent_image/transparent_image.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final Orientation orientation = MediaQuery.of(context).orientation;
     final ThemeData theme = Theme.of(context);
     final TextStyle titleStyle =
         theme.textTheme.headline.copyWith(color: Colors.black54);
@@ -431,14 +430,38 @@ class _Scaffold extends StatelessWidget {
             BlocProvider<CategoryBloc>(
                 create: (context) => CategoryBloc(),
                 child: BlocBuilder<CategoryBloc, CategoryState>(
-                    builder: (context, state) => CategoriesWidget(state: state, shapeBorder: shapeBorder))
-            )
+                    builder: (context, state) => CategoriesWrapperWidget(state)
+            ))
           ]),
         ),
       ),
     );
   }
 
+}
+
+class CategoriesWrapperWidget extends StatelessWidget {
+  CategoryState state;
+
+
+  CategoriesWrapperWidget(this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    if( state is Loaded) {
+      return CategoriesWidget(state: state);
+    } else if (state is Failed) {
+      return SizedBox(
+          height: 200.0,
+          child: Center(child: Text("${(state as Failed).reason}", style:  Theme.of(context).textTheme.headline6,)));
+    } else if ( state is Loading) {
+      return SizedBox(
+          height: 200.0,
+          child: Center(child: CircularProgressIndicator()));
+    }
+    debugPrint("state is $state");
+    assert(false);
+  }
 }
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({
@@ -447,7 +470,7 @@ class CategoriesWidget extends StatelessWidget {
     @required this.shapeBorder,
   }) : super(key: key);
 
-  final CategoryState state;
+  final Loaded state;
   final ShapeBorder shapeBorder;
 
   @override
@@ -464,7 +487,7 @@ class CategoriesWidget extends StatelessWidget {
       gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
-        return CategoryWidget(shapeBorder: shapeBorder, category: state.categories[index]);
+        return CategoryWidget( category: state.categories[index]);
       }),
             );
   }
@@ -473,11 +496,9 @@ class CategoriesWidget extends StatelessWidget {
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({
     Key key,
-    @required this.shapeBorder,
     @required this.category,
   }) : super(key: key);
 
-  final ShapeBorder shapeBorder;
   final CategoryDto category;
 
   @override
@@ -486,7 +507,6 @@ class CategoryWidget extends StatelessWidget {
     return new Container(
         margin: EdgeInsets.all(5.0),
         child: new Card(
-          shape: shapeBorder,
           elevation: 3.0,
           child: new Container(
             //  mainAxisSize: MainAxisSize.max,
@@ -570,8 +590,9 @@ class WidgetImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return category.image != null ? Image.network(
-          category.image.src,
+    return category.image != null ? FadeInImage.memoryNetwork(
+      placeholder: kTransparentImage,
+          image: category.image.src,
           fit: BoxFit.fitHeight,
         ) : Text(category.name.substring(0,1), textScaleFactor: 10.0,);
   }

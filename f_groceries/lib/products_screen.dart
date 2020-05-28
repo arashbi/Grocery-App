@@ -10,6 +10,7 @@ import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
 import 'package:provider/provider.dart';
 import 'app_bar.dart';
 import 'model/data_model.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ProductsScreen extends StatelessWidget {
   final String toolbarName;
@@ -100,13 +101,12 @@ class ProductsGrid extends StatelessWidget {
 }
 
 class ProductWidget extends StatelessWidget {
-  ProductWidget({Key key, @required this.product, this.shape})
+  ProductWidget({Key key, @required this.product})
       : assert(product != null),
         super(key: key);
 
   static const double height = 566.0;
   final ProductDto product;
-  final ShapeBorder shape;
 
   @override
   Widget build(BuildContext context) {
@@ -127,15 +127,15 @@ class ProductWidget extends StatelessWidget {
                             ProductDetailScreen(product: product)));
               },
               child: Card(
-                shape: shape,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // photo and title
                     Stack(
                       children: <Widget>[
-                        Image.network(
-                          product.images[0].src,
+                        FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: product.images[0].src,
                           // package: destination.assetPackage,
                           fit: BoxFit.scaleDown,
                         ),
