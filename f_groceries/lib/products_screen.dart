@@ -26,7 +26,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return new Scaffold(
+    return Scaffold(
       key: _scaffoldKey,
       appBar: _appbar(context),
       body: Column(
@@ -129,6 +129,7 @@ class ProductWidget extends StatelessWidget {
               child: Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     // photo and title
                     Stack(
@@ -148,36 +149,34 @@ class ProductWidget extends StatelessWidget {
                       ],
                     ),
                     // description and share/explore buttons
-                    Expanded(
-                      child: DefaultTextStyle(
-                        style: descriptionStyle,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            // three line description
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  6.0, 0, 6.0, 6.0),
-                              child: Text(
-                                product.name,
-                                style: descriptionStyle.copyWith(
-                                    color: Colors.black87),
-                              ),
+                    DefaultTextStyle(
+                      style: descriptionStyle,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          // three line description
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                6.0, 0, 6.0, 6.0),
+                            child: Text(
+                              product.name,
+                              style: descriptionStyle.copyWith(
+                                  color: Colors.black87),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 8.0),
-                              child: Text(
-                                product.price,
-                                style: descriptionStyle.copyWith(
-                                    color: Colors.black54),
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 8.0),
+                            child: Text(
+                              product.price,
+                              style: descriptionStyle.copyWith(
+                                  color: Colors.black54),
                             ),
-                            // Text(destination.description[1]),
-                            // Text(destination.description[2]),
-                          ],
-                        ),
+                          ),
+                          // Text(destination.description[1]),
+                          // Text(destination.description[2]),
+                        ],
                       ),
                     ),
                     // share, explore buttons

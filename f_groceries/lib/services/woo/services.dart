@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 String username = "ck_5a4c6c0cf237e24d7859810d56d97a523b7ab131";
 String password = "cs_3a4c1530d2e6aa0ae6ca7638e374f5c90941b585";
 String auth = 'Basic ' + base64Encode(utf8.encode("$username:$password"));
-String basePath = 'https://e0832fac9820.ngrok.io/';
+String basePath = 'https://96ee18fd53e0.ngrok.io/';
 
 Future<BuiltList<CategoryDto>> fetchCategories()  {
   var response = _callWC("/wp-json/wc/v3/products/categories");
