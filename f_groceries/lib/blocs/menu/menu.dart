@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:f_groceries/blocs/cart/cart_bloc.dart';
 import 'package:f_groceries/blocs/search/search.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -13,7 +14,6 @@ class SearchStarted extends MenuEvent {
 class ChangeTitle extends MenuEvent {
 
   @override
-  // TODO: implement props
   List<Object> get props => throw UnimplementedError();
 
 }
@@ -49,8 +49,14 @@ class RestingState extends MenuState {
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   SearchBloc _searchBloc;
+  CartBloc _cartBloc;
+  MenuBloc(this._searchBloc, this._cartBloc){
+    _cartBloc.listen((state ) {
+      if(state is Ready) {
 
-  MenuBloc(this._searchBloc);
+      }
+    });
+  }
 
   @override
   MenuState get initialState => RestingState("");

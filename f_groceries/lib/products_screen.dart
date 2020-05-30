@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_range_slider/flutter_range_slider.dart' as rs;
 import 'package:provider/provider.dart';
 import 'app_bar.dart';
+import 'blocs/cart/cart_bloc.dart';
 import 'model/data_model.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -187,11 +188,7 @@ class ProductWidget extends StatelessWidget {
                           child: const Text('Add'),
                           textColor: Colors.amber.shade500,
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProductDetailScreen()));
+                            BlocProvider.of<CartBloc>(context).add(AddProduct(product));
                           },
                           shape: new OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
