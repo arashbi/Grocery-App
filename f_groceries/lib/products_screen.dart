@@ -1,5 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:f_groceries/Cart_Screen.dart';
+import 'package:f_groceries/cart_screen.dart';
 import 'package:f_groceries/blocs/products/products.dart';
 import 'package:f_groceries/blocs/search/search.dart';
 import 'package:f_groceries/model/menu_bar_model.dart';

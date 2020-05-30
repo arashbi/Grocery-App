@@ -1,3 +1,4 @@
+import 'package:f_groceries/Cart_Screen.dart';
 import 'package:f_groceries/blocs/cart/cart_bloc.dart';
 import 'package:f_groceries/blocs/menu/menu.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,9 @@ class MenuBar extends StatelessWidget implements PreferredSizeWidget {
           IconButton(
             tooltip: 'Cart',
             icon: Icon(Icons.shopping_basket),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Cart_screen()));
+            },
           ),
           Positioned(
               child: new Stack(
@@ -47,7 +50,7 @@ class MenuBar extends StatelessWidget implements PreferredSizeWidget {
                   child: new Center(
                     child: BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) => Text(
-                        (state as Ready).products.length.toString(),
+                        (state as Ready).count.toString(),
                         style: new TextStyle(
                             color: Colors.white,
                             fontSize: 11.0,
