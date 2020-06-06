@@ -5,6 +5,7 @@ import 'package:f_groceries/blocs/search/search.dart';
 import 'package:f_groceries/help_screen.dart';
 import 'package:f_groceries/logind_signup.dart';
 import 'package:f_groceries/orderhistory_screen.dart';
+import 'package:f_groceries/product_detail.dart';
 import 'package:f_groceries/products_screen.dart';
 import 'package:f_groceries/setting_screen.dart';
 import 'package:f_groceries/blocs/featured_product_bloc.dart' as FeaturedProductBloc;
@@ -533,15 +534,20 @@ class _CarouselSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(
-        child: Stack(
-          children: [
-            FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image: _product.images[0].src,
-                fit:  BoxFit.fill,
-            )
-          ],
+      child: GestureDetector(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context)=> ProductDetailScreen(product: _product)
+        )),
+        child: Card(
+          child: Stack(
+            children: [
+              FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: _product.images[0].src,
+                  fit:  BoxFit.fill,
+              )
+            ],
+          ),
         ),
       ),
     );
