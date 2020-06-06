@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:f_groceries/model/Address_model.dart';
-import 'package:f_groceries/services/address_services.dart';
 
-class Account_Screen extends StatefulWidget {
+class AccountScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => account();
 }
 
-class account extends State<Account_Screen> {
+class account extends State<AccountScreen> {
   String username = 'Naomi A. Schultz';
   String mobilenumber = '410-422-9171';
   String eid = 'NaomiASchultz@armyspy.com';

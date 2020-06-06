@@ -1,4 +1,4 @@
-GET https://pandasmooth.local/wp-json/wc/v3/products/categories
+GET http://10.0.0.197:8080/wp-json/wc/v3/products/categories
 Authorization: Basic ck_5a4c6c0cf237e24d7859810d56d97a523b7ab131 cs_3a4c1530d2e6aa0ae6ca7638e374f5c90941b585
 Accept: */*
 Cache-Control: no-cache
@@ -6,6 +6,13 @@ Cache-Control: no-cache
 ###
 
 GET https://pandasmooth.local/wp-json/wc/v3/products?category=&search=
+Authorization: Basic ck_5a4c6c0cf237e24d7859810d56d97a523b7ab131 cs_3a4c1530d2e6aa0ae6ca7638e374f5c90941b585
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET https://pandasmooth.local/wp-json/wc/v3/products?featured=true
 Authorization: Basic ck_5a4c6c0cf237e24d7859810d56d97a523b7ab131 cs_3a4c1530d2e6aa0ae6ca7638e374f5c90941b585
 Accept: */*
 Cache-Control: no-cache

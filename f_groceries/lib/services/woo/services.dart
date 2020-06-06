@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 String username = "ck_5a4c6c0cf237e24d7859810d56d97a523b7ab131";
 String password = "cs_3a4c1530d2e6aa0ae6ca7638e374f5c90941b585";
 String auth = 'Basic ' + base64Encode(utf8.encode("$username:$password"));
-String basePath = 'https://e3befdb158fb.ngrok.io/';
+String basePath = 'http://10.0.0.197:8080/';
 
 Future<BuiltList<CategoryDto>> fetchCategories()  {
   var response = _callWC("/wp-json/wc/v3/products/categories");
@@ -31,6 +31,12 @@ Future<BuiltList<CategoryDto>> fetchCategories()  {
   return f;
 }
 
+Future<BuiltList<ProductDto>> fetchFeaturedProducts() async {
+  return _callWC("/wp-json/wc/v3/products?featured=true").then((value) {
+    debugPrint(value.body);
+    return deserializeListOf<ProductDto>(jsonDecode(value.body));
+  });
+}
 fetchProducts({String categoryId }) async {
   if (categoryId != null) {
     var response =  _callWC("/wp-json/wc/v3/products/?category=$categoryId");
